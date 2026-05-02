@@ -5,6 +5,25 @@ export type RouteGroup = {
 
 export const routeGroups: RouteGroup[] = [
   {
+    label: 'Editors',
+    routes: [
+      { path: '/editora-editor', label: 'Editora Editor' },
+      { path: '/editora-editor-controlled', label: 'Controlled Editor' },
+      { path: '/editora-editor-readonly', label: 'Read-only Editor' },
+      { path: '/editora-editor-plugins', label: 'Plugin Toolbar' },
+      { path: '/editora-editor-enterprise', label: 'Enterprise Editor' },
+      { path: '/editora-editor-api', label: 'Editor API' },
+      { path: '/light-code-editor', label: 'Light Code Editor' },
+      { path: '/light-code-editor-languages', label: 'Languages & Themes' },
+      { path: '/light-code-editor-search', label: 'Search & Replace' },
+      { path: '/light-code-editor-diagnostics', label: 'Diagnostics' },
+      { path: '/light-code-editor-completion', label: 'Completion' },
+      { path: '/light-code-editor-formatting', label: 'Formatting' },
+      { path: '/light-code-editor-readonly', label: 'Read-only Code' },
+      { path: '/light-code-editor-full', label: 'Full Code Editor' },
+    ],
+  },
+  {
     label: 'Motion',
     routes: [
       { path: '/animated-beam', label: 'AnimatedBeam' },

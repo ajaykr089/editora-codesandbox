@@ -17,12 +17,12 @@ const nodeShellStyle: React.CSSProperties = {
 };
 
 const nodeGlyphStyle: React.CSSProperties = {
-  width: 26, height: 26,
+  width: 30, height: 30,
   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-  borderRadius: '999px',
-  background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.98), rgba(241,245,249,0.92) 58%, rgba(191,219,254,0.6) 100%)',
-  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.82), 0 8px 16px rgba(15,23,42,0.12), 0 0 0 1px rgba(148,163,184,0.18)',
-  color: '#0f172a',
+  borderRadius: 10,
+  background: '#ffffff',
+  boxShadow: '0 8px 18px rgba(15,23,42,0.10), 0 0 0 1px rgba(148,163,184,0.22)',
+  color: '#1d4ed8',
 };
 
 const CLOUD_ITEMS = [
@@ -46,31 +46,53 @@ export function IconCloudDemo() {
       <div style={panel}>
         <h3 style={h3}>Interactive 3D cloud</h3>
         <Box style={{
-          padding: 28, borderRadius: 24, minHeight: 480,
-          background: 'radial-gradient(circle at 50% 18%, rgba(59,130,246,0.18), transparent 30%), linear-gradient(180deg,#f7fbff,#edf5ff 54%,#f8fafc)',
-          border: '1px solid rgba(148,163,184,0.22)', display: 'grid', gap: 16,
+          padding: 24,
+          borderRadius: 16,
+          background: '#f8fafc',
+          border: '1px solid #e2e8f0',
+          display: 'grid',
+          gap: 16,
         }}>
-          <Flex style={{ gap: 8, flexWrap: 'wrap' }}>
+          <Flex style={{ gap: 8, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box style={{ fontSize: 13, color: '#475569', fontWeight: 600 }}>Click an orbit item to update the center label.</Box>
             <button style={{ borderRadius: 10, border: '1px solid #cbd5e1', background: '#fff', padding: '8px 12px', fontWeight: 600, cursor: 'pointer', fontSize: 13 }} onClick={() => ref.current?.pause()}>Pause</button>
             <button style={{ borderRadius: 10, border: '1px solid #cbd5e1', background: '#fff', padding: '8px 12px', fontWeight: 600, cursor: 'pointer', fontSize: 13 }} onClick={() => ref.current?.play()}>Play</button>
             <button style={{ borderRadius: 10, border: '1px solid #cbd5e1', background: '#fff', padding: '8px 12px', fontWeight: 600, cursor: 'pointer', fontSize: 13 }} onClick={() => ref.current?.refresh()}>Refresh</button>
             <Box style={{ padding: '8px 12px', borderRadius: 10, background: '#eff6ff', fontSize: 13, color: '#2563eb', fontWeight: 600 }}>Selected: {selected}</Box>
           </Flex>
-          <Flex style={{ justifyContent: 'center' }}>
-            <IconCloud ref={ref} variant="glass" tone="brand" size="md" radius={132} perspective={820} depth={1.22} itemSize={34} centerSize={112} interactive autoFit pauseOnHover pauseOnItemHover>
+          <Flex style={{ justifyContent: 'center', alignItems: 'center', minHeight: 420 }}>
+            <Box style={{ width: 'min(100%, 440px)', aspectRatio: '1 / 1', display: 'grid', placeItems: 'center' }}>
+            <IconCloud
+              ref={ref}
+              variant="surface"
+              tone="brand"
+              size="md"
+              radius={124}
+              perspective={900}
+              depth={0.9}
+              itemSize={42}
+              centerSize={92}
+              speed={0.45}
+              surfaceRadius={16}
+              elevation="low"
+              interactive
+              autoFit
+              pauseOnHover
+              pauseOnItemHover
+            >
               <IconCloud.Center>
-                <Box style={{ display: 'grid', gap: 4, textAlign: 'center', width: '100%', height: '100%', alignContent: 'center', padding: 10, borderRadius: '999px', background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.98), rgba(219,234,254,0.88) 56%, rgba(147,197,253,0.56) 100%)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.78)' }}>
-                  <Box style={{ fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#64748b', fontWeight: 800 }}>Orbit Core</Box>
-                  <Box style={{ fontSize: 22, lineHeight: 1, fontWeight: 820, color: '#0f172a' }}>{selected}</Box>
-                  <Box style={{ fontSize: 11, color: '#64748b' }}>8 systems</Box>
+                <Box style={{ display: 'grid', gap: 2, textAlign: 'center', width: '100%', height: '100%', alignContent: 'center', padding: 10, borderRadius: 18, background: '#ffffff', boxShadow: '0 14px 32px rgba(15,23,42,0.12), 0 0 0 1px rgba(148,163,184,0.18)' }}>
+                  <Box style={{ fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#64748b', fontWeight: 800 }}>Core</Box>
+                  <Box style={{ fontSize: 18, lineHeight: 1.1, fontWeight: 800, color: '#0f172a' }}>{selected}</Box>
                 </Box>
               </IconCloud.Center>
               {CLOUD_ITEMS.map(({ value, label, Ic }) => (
                 <IconCloud.Item key={value} clickable aria-label={label} title={label} style={nodeShellStyle} onClick={() => setSelected(label)}>
-                  <Box style={nodeGlyphStyle}><Ic size="0.9em" /></Box>
+                  <Box style={nodeGlyphStyle}><Ic size={17} /></Box>
                 </IconCloud.Item>
               ))}
             </IconCloud>
+            </Box>
           </Flex>
         </Box>
       </div>
@@ -78,14 +100,14 @@ export function IconCloudDemo() {
         <h3 style={h3}>Variant gallery</h3>
         <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(180px,1fr))' }}>
           {(['surface', 'soft', 'glass', 'contrast', 'minimal'] as const).map((v, i) => (
-            <Box key={v} style={{ display: 'grid', placeItems: 'center', gap: 10, padding: 16, borderRadius: 16, border: '1px solid #e2e8f0', background: '#fff' }}>
-              <IconCloud variant={v} tone="brand" radius={80} perspective={600} depth={1.1} itemSize={24} centerSize={72} speed={0.7 + i * 0.1} autoFit size="sm">
+            <Box key={v} style={{ display: 'grid', placeItems: 'center', gap: 10, padding: 14, borderRadius: 12, border: '1px solid #e2e8f0', background: '#fff' }}>
+              <IconCloud variant={v} tone="brand" radius={72} perspective={680} depth={0.85} itemSize={28} centerSize={58} speed={0.35 + i * 0.08} autoFit size="sm" surfaceRadius={12}>
                 <IconCloud.Center>
-                  <Box style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'center' }}>{v}</Box>
+                  <Box style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', textAlign: 'center' }}>{v}</Box>
                 </IconCloud.Center>
                 {CLOUD_ITEMS.slice(0, 6).map(({ value, label, Ic }) => (
                   <IconCloud.Item key={value} aria-label={label} style={nodeShellStyle}>
-                    <Box style={nodeGlyphStyle}><Ic size="0.9em" /></Box>
+                    <Box style={{ ...nodeGlyphStyle, width: 22, height: 22, borderRadius: 8, boxShadow: '0 4px 10px rgba(15,23,42,0.10), 0 0 0 1px rgba(148,163,184,0.18)' }}><Ic size={13} /></Box>
                   </IconCloud.Item>
                 ))}
               </IconCloud>

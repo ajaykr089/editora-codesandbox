@@ -3,6 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AlertDialogProvider } from '@editora/ui-react';
 import { NavSidebar } from './components/NavSidebar';
 
+// Editors
+import { EditoraApiDemo, EditoraControlledDemo, EditoraEditorDemo, EditoraEnterpriseDemo, EditoraPluginsDemo, EditoraReadOnlyDemo } from './pages/EditorDemos';
+import { LightCodeEditorCompletionDemo, LightCodeEditorDemo, LightCodeEditorDiagnosticsDemo, LightCodeEditorFormattingDemo, LightCodeEditorFullDemo, LightCodeEditorLanguageDemo, LightCodeEditorReadOnlyDemo, LightCodeEditorSearchDemo } from './pages/LightCodeEditorDemos';
 // Motion
 import { AnimatedBeamDemo, AnimatedListDemo, AnimatedNumberDemo, AnimatedTextDemo, MarqueeDemo, NumberTickerDemo, OrbiterDemo, SpinningTextDemo, DockDemo } from './pages/MotionDemos';
 // Layout
@@ -48,7 +51,23 @@ export default function App() {
         <NavSidebar />
         <main style={contentStyle}>
           <Routes>
-            <Route path="/" element={<Navigate to="/accordion" replace />} />
+            <Route path="/" element={<Navigate to="/editora-editor" replace />} />
+
+            {/* Editors */}
+            <Route path="/editora-editor" element={<EditoraEditorDemo />} />
+            <Route path="/editora-editor-controlled" element={<EditoraControlledDemo />} />
+            <Route path="/editora-editor-readonly" element={<EditoraReadOnlyDemo />} />
+            <Route path="/editora-editor-plugins" element={<EditoraPluginsDemo />} />
+            <Route path="/editora-editor-enterprise" element={<EditoraEnterpriseDemo />} />
+            <Route path="/editora-editor-api" element={<EditoraApiDemo />} />
+            <Route path="/light-code-editor" element={<LightCodeEditorDemo />} />
+            <Route path="/light-code-editor-languages" element={<LightCodeEditorLanguageDemo />} />
+            <Route path="/light-code-editor-search" element={<LightCodeEditorSearchDemo />} />
+            <Route path="/light-code-editor-diagnostics" element={<LightCodeEditorDiagnosticsDemo />} />
+            <Route path="/light-code-editor-completion" element={<LightCodeEditorCompletionDemo />} />
+            <Route path="/light-code-editor-formatting" element={<LightCodeEditorFormattingDemo />} />
+            <Route path="/light-code-editor-readonly" element={<LightCodeEditorReadOnlyDemo />} />
+            <Route path="/light-code-editor-full" element={<LightCodeEditorFullDemo />} />
 
             {/* Motion */}
             <Route path="/animated-beam" element={<AnimatedBeamDemo />} />
@@ -193,7 +212,7 @@ export default function App() {
             <Route path="/slot" element={<SlotDemo />} />
             <Route path="/theming" element={<BoxDemo />} />
 
-            <Route path="*" element={<Navigate to="/accordion" replace />} />
+            <Route path="*" element={<Navigate to="/editora-editor" replace />} />
           </Routes>
         </main>
       </div>

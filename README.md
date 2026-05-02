@@ -25,6 +25,10 @@ npm run dev
 
 This sandbox uses:
 
+- `@editora/react@1.0.12`
+- `@editora/light-code-editor@1.0.10`
+- `@editora/core@1.0.9`
+- `@editora/plugins@1.0.8`
 - `@editora/ui-react@0.1.13`
 - `@editora/ui-core@0.1.13`
 - `@editora/react-icons@0.1.7`
@@ -35,6 +39,7 @@ This sandbox uses:
 ## Notes
 
 - The demo app imports components from the published npm packages, not local workspace source.
+- The first sidebar section contains the rich text editor and light code editor demos.
 - `Archive.zip` excludes `node_modules` and `dist`.
 - The production build can be checked with:
 
