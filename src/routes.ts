@@ -11,6 +11,7 @@ export const routeGroups: RouteGroup[] = [
       { path: '/editora-editor-controlled', label: 'Controlled Editor' },
       { path: '/editora-editor-readonly', label: 'Read-only Editor' },
       { path: '/editora-editor-plugins', label: 'Plugin Toolbar' },
+      { path: '/editora-editor-all-toolbars', label: 'All Toolbars' },
       { path: '/editora-editor-enterprise', label: 'Enterprise Editor' },
       { path: '/editora-editor-api', label: 'Editor API' },
       { path: '/light-code-editor', label: 'Light Code Editor' },

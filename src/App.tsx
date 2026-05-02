@@ -4,7 +4,7 @@ import { AlertDialogProvider } from '@editora/ui-react';
 import { NavSidebar } from './components/NavSidebar';
 
 // Editors
-import { EditoraApiDemo, EditoraControlledDemo, EditoraEditorDemo, EditoraEnterpriseDemo, EditoraPluginsDemo, EditoraReadOnlyDemo } from './pages/EditorDemos';
+import { EditoraAllToolbarsDemo, EditoraApiDemo, EditoraControlledDemo, EditoraEditorDemo, EditoraEnterpriseDemo, EditoraPluginsDemo, EditoraReadOnlyDemo } from './pages/EditorDemos';
 import { LightCodeEditorCompletionDemo, LightCodeEditorDemo, LightCodeEditorDiagnosticsDemo, LightCodeEditorFormattingDemo, LightCodeEditorFullDemo, LightCodeEditorLanguageDemo, LightCodeEditorReadOnlyDemo, LightCodeEditorSearchDemo } from './pages/LightCodeEditorDemos';
 // Motion
 import { AnimatedBeamDemo, AnimatedListDemo, AnimatedNumberDemo, AnimatedTextDemo, MarqueeDemo, NumberTickerDemo, OrbiterDemo, SpinningTextDemo, DockDemo } from './pages/MotionDemos';
@@ -58,6 +58,7 @@ export default function App() {
             <Route path="/editora-editor-controlled" element={<EditoraControlledDemo />} />
             <Route path="/editora-editor-readonly" element={<EditoraReadOnlyDemo />} />
             <Route path="/editora-editor-plugins" element={<EditoraPluginsDemo />} />
+            <Route path="/editora-editor-all-toolbars" element={<EditoraAllToolbarsDemo />} />
             <Route path="/editora-editor-enterprise" element={<EditoraEnterpriseDemo />} />
             <Route path="/editora-editor-api" element={<EditoraApiDemo />} />
             <Route path="/light-code-editor" element={<LightCodeEditorDemo />} />

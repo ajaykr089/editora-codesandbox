@@ -194,7 +194,7 @@ export function LightCodeEditorLanguageDemo() {
           ))}
           <Button size="sm" variant="ghost" onClick={() => editorRef.current?.executeCommand('toggleTheme')}>Toggle theme</Button>
         </Flex>
-        <LightEditor value={samples.typescript} language={language} extensions={[new ThemeExtension()]} onReady={(editor) => (editorRef.current = editor)} />
+        <LightEditor value={samples.typescript} language={language} onReady={(editor) => (editorRef.current = editor)} />
       </div>
     </div>
   );
