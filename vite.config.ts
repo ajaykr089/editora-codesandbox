@@ -8,8 +8,7 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    force: true,
-    include: ['@editora/plugins'],
+    exclude: ['@editora/plugins'],
   },
   resolve: {
     dedupe: ['react', 'react-dom'],
