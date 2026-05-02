@@ -3,23 +3,16 @@ import { RichTextEditor, type EditorAPI } from '@editora/react';
 import {
   A11yCheckerPlugin,
   AnchorPlugin,
-  ApprovalWorkflowPlugin,
   BackgroundColorPlugin,
   BlockquotePlugin,
-  BlocksLibraryPlugin,
   BoldPlugin,
   CapitalizationPlugin,
   ChecklistPlugin,
-  CitationsPlugin,
   ClearFormattingPlugin,
   CodePlugin,
   CodeSamplePlugin,
   CommentsPlugin,
-  ConditionalContentPlugin,
-  ContentRulesPlugin,
-  DataBindingPlugin,
   DirectionPlugin,
-  DocSchemaPlugin,
   DocumentManagerPlugin,
   EmbedIframePlugin,
   EmojisPlugin,
@@ -35,27 +28,34 @@ import {
   LinkPlugin,
   ListPlugin,
   MediaManagerPlugin,
-  MentionPlugin,
   MergeTagPlugin,
   MathPlugin,
   PageBreakPlugin,
-  PIIRedactionPlugin,
   PreviewPlugin,
   PrintPlugin,
-  SlashCommandsPlugin,
-  SmartPastePlugin,
   SpecialCharactersPlugin,
   SpellCheckPlugin,
   TablePlugin,
   TemplatePlugin,
   TextAlignmentPlugin,
   TextColorPlugin,
-  TrackChangesPlugin,
-  TranslationWorkflowPlugin,
   StrikethroughPlugin,
   UnderlinePlugin,
-  VersionDiffPlugin,
 } from '@editora/plugins';
+import { ApprovalWorkflowPlugin } from '@editora/plugins/approval-workflow';
+import { BlocksLibraryPlugin } from '@editora/plugins/blocks-library';
+import { CitationsPlugin } from '@editora/plugins/citations';
+import { ConditionalContentPlugin } from '@editora/plugins/conditional-content';
+import { ContentRulesPlugin } from '@editora/plugins/content-rules';
+import { DataBindingPlugin } from '@editora/plugins/data-binding';
+import { DocSchemaPlugin } from '@editora/plugins/doc-schema';
+import { MentionPlugin } from '@editora/plugins/mentions';
+import { PIIRedactionPlugin } from '@editora/plugins/pii-redaction';
+import { SlashCommandsPlugin } from '@editora/plugins/slash-commands';
+import { SmartPastePlugin } from '@editora/plugins/smart-paste';
+import { TrackChangesPlugin } from '@editora/plugins/track-changes';
+import { TranslationWorkflowPlugin } from '@editora/plugins/translation-workflow';
+import { VersionDiffPlugin } from '@editora/plugins/version-diff';
 import { Button, Flex, Grid } from '@editora/ui-react';
 import { toastAdvanced } from '@editora/toast';
 
