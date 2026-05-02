@@ -3,7 +3,6 @@ import { RichTextEditor, type EditorAPI } from '@editora/react';
 import {
   A11yCheckerPlugin,
   AnchorPlugin,
-  ApprovalWorkflowPlugin,
   BackgroundColorPlugin,
   BlockquotePlugin,
   BlocksLibraryPlugin,
@@ -194,11 +193,6 @@ const createAllToolbarPlugins = () => [
   CitationsPlugin({
     defaultStyle: 'apa',
     enableFootnoteSync: true,
-  }),
-  ApprovalWorkflowPlugin({
-    defaultStatus: 'draft',
-    lockOnApproval: true,
-    defaultActor: 'Editorial Lead',
   }),
   PIIRedactionPlugin({
     enableRealtime: true,
