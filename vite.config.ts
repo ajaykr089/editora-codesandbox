@@ -7,6 +7,10 @@ export default defineConfig({
       jsxRuntime: 'automatic',
     }),
   ],
+  optimizeDeps: {
+    force: true,
+    include: ['@editora/plugins'],
+  },
   resolve: {
     dedupe: ['react', 'react-dom'],
   },
