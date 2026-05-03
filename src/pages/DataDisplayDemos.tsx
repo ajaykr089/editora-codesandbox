@@ -9,11 +9,6 @@ import { CheckCircleIcon, ClockIcon } from '@editora/react-icons';
 const panel: React.CSSProperties = { border: '1px solid #e2e8f0', borderRadius: 16, padding: 20, background: '#fff', marginBottom: 20 };
 const h2: React.CSSProperties = { fontSize: 22, fontWeight: 700, marginBottom: 16, color: '#0f172a' };
 const h3: React.CSSProperties = { fontSize: 15, fontWeight: 650, marginBottom: 12, color: '#334155' };
-const tableWrap: React.CSSProperties = { display: 'block', overflow: 'hidden', border: '1px solid #dbe4ef', borderRadius: 12, background: '#fff' };
-const tableEl: React.CSSProperties = { width: '100%', borderCollapse: 'separate', borderSpacing: 0, fontSize: 14 };
-const th: React.CSSProperties = { padding: '12px 14px', textAlign: 'left', fontSize: 12, fontWeight: 750, color: '#475569', background: '#f8fafc', borderBottom: '1px solid #dbe4ef', textTransform: 'uppercase', letterSpacing: '0.04em' };
-const td: React.CSSProperties = { padding: '12px 14px', color: '#0f172a', borderBottom: '1px solid #edf2f7', verticalAlign: 'middle' };
-const lastRowTd: React.CSSProperties = { ...td, borderBottom: 0 };
 
 export function AvatarDemo() {
   return (
@@ -353,23 +348,23 @@ export function TableDemo() {
       <h2 style={h2}>Table</h2>
       <div style={panel}>
         <h3 style={h3}>Styled table wrapper</h3>
-        <Table hover striped bordered style={tableWrap}>
-          <table style={tableEl}>
+        <Table hover striped bordered>
+          <table>
             <thead>
               <tr>
-                <th style={th}>Name</th><th style={th}>Role</th><th style={th}>Team</th><th style={th}>Status</th><th style={th}>Actions</th>
+                <th>Name</th><th>Role</th><th>Team</th><th>Status</th><th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((r, index) => (
-                <tr key={r.id} style={{ background: index % 2 ? '#fbfdff' : '#fff' }}>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.name}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.role}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.team}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>
+              {rows.map((r) => (
+                <tr key={r.id}>
+                  <td>{r.name}</td>
+                  <td>{r.role}</td>
+                  <td>{r.team}</td>
+                  <td>
                     <Badge variant="soft" tone={r.status === 'Active' ? 'success' : r.status === 'Away' ? 'warning' : 'neutral'} size="sm">{r.status}</Badge>
                   </td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}><Button size="sm" variant="ghost">Edit</Button></td>
+                  <td><Button size="sm" variant="ghost">Edit</Button></td>
                 </tr>
               ))}
             </tbody>
@@ -384,26 +379,25 @@ export function TableDemo() {
           multiSelect
           hover
           striped
-          style={tableWrap}
           onSortChange={(detail: any) => console.log('table sort', detail)}
           onRowSelect={(detail: any) => console.log('table rows', detail.indices)}
         >
-          <table style={tableEl}>
+          <table>
             <thead>
               <tr>
-                <th style={th} data-key="name" data-sortable="true">Name</th>
-                <th style={th} data-key="role" data-sortable="true">Role</th>
-                <th style={th} data-key="team" data-sortable="true">Team</th>
-                <th style={th}>Status</th>
+                <th data-key="name" data-sortable="true">Name</th>
+                <th data-key="role" data-sortable="true">Role</th>
+                <th data-key="team" data-sortable="true">Team</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((r, index) => (
+              {rows.map((r) => (
                 <tr key={r.id}>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.name}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.role}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.team}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.status}</td>
+                  <td>{r.name}</td>
+                  <td>{r.role}</td>
+                  <td>{r.team}</td>
+                  <td>{r.status}</td>
                 </tr>
               ))}
             </tbody>
@@ -412,12 +406,12 @@ export function TableDemo() {
       </div>
       <div style={panel}>
         <h3 style={h3}>Bordered + compact</h3>
-        <Table bordered compact style={tableWrap}>
-          <table style={tableEl}>
-            <thead><tr><th style={th}>Key</th><th style={th}>Value</th></tr></thead>
+        <Table bordered compact>
+          <table>
+            <thead><tr><th>Key</th><th>Value</th></tr></thead>
             <tbody>
-              {[['Version', '0.1.13'], ['License', 'MIT'], ['Framework', 'React 18'], ['Language', 'TypeScript 5']].map(([k, v], index, items) => (
-                <tr key={k}><td style={index === items.length - 1 ? lastRowTd : td}>{k}</td><td style={index === items.length - 1 ? lastRowTd : td}>{v}</td></tr>
+              {[['Version', '0.1.14'], ['License', 'MIT'], ['Framework', 'React 18'], ['Language', 'TypeScript 5']].map(([k, v]) => (
+                <tr key={k}><td>{k}</td><td>{v}</td></tr>
               ))}
             </tbody>
           </table>
@@ -455,34 +449,33 @@ export function DataTableDemo() {
           pageSize={4}
           paginationId="sandbox-data-table-pager"
           filterQuery=""
-          style={{ ...tableWrap, overflow: 'auto' }}
           onPageChange={(detail: any) => setPage(detail.page)}
           onSortChange={(detail: any) => console.log('data-table sort', detail)}
           onRowSelect={(detail: any) => console.log('data-table rows', detail.indices)}
         >
-          <table style={tableEl}>
-            <caption style={{ padding: '12px 14px', textAlign: 'left', color: '#64748b', fontSize: 13 }}>Project portfolio, selectable and sortable</caption>
+          <table>
+            <caption>Project portfolio, selectable and sortable</caption>
             <thead>
               <tr>
-                <th style={th} data-key="id" data-sortable="true">ID</th>
-                <th style={th} data-key="project" data-sortable="true">Project</th>
-                <th style={th} data-key="owner" data-sortable="true">Owner</th>
-                <th style={th} data-key="status" data-sortable="true">Status</th>
-                <th style={th} data-key="risk" data-sortable="true">Risk</th>
-                <th style={th} data-key="due" data-sortable="true">Due</th>
+                <th data-key="id" data-sortable="true">ID</th>
+                <th data-key="project" data-sortable="true">Project</th>
+                <th data-key="owner" data-sortable="true">Owner</th>
+                <th data-key="status" data-sortable="true">Status</th>
+                <th data-key="risk" data-sortable="true">Risk</th>
+                <th data-key="due" data-sortable="true">Due</th>
               </tr>
             </thead>
             <tbody>
-              {rows.map((r, index) => (
+              {rows.map((r) => (
                 <tr key={r.id}>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.id}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.project}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.owner}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>
+                  <td>{r.id}</td>
+                  <td>{r.project}</td>
+                  <td>{r.owner}</td>
+                  <td>
                     <Badge variant="soft" tone={r.status === 'Blocked' ? 'danger' : r.status === 'Review' ? 'warning' : 'success'} size="sm">{r.status}</Badge>
                   </td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.risk}</td>
-                  <td style={index === rows.length - 1 ? lastRowTd : td}>{r.due}</td>
+                  <td>{r.risk}</td>
+                  <td>{r.due}</td>
                 </tr>
               ))}
             </tbody>
@@ -495,9 +488,9 @@ export function DataTableDemo() {
       <div style={panel}>
         <h3 style={h3}>States and variants</h3>
         <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-          <DataTable state="loading" stateText="Loading records..." style={{ minHeight: 120 }} />
-          <DataTable state="error" stateText="Could not load records" style={{ minHeight: 120 }} />
-          <DataTable state="success" stateText="All records synced" style={{ minHeight: 120 }} />
+          <DataTable state="loading" stateText="Loading records..." />
+          <DataTable state="error" stateText="Could not load records" />
+          <DataTable state="success" stateText="All records synced" />
         </Grid>
       </div>
     </div>
