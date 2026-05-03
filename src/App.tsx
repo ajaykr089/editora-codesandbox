@@ -25,8 +25,9 @@ import { ButtonDemo, ButtonMatricesDemo, CopyButtonDemo, FloatingToolbarDemo, To
 // Typography
 import { IconDemo, KbdDemo, SeparatorDemo, ShortcutDemo, VisuallyHiddenDemo } from './pages/TypographyDemos';
 import { IconCloudDemo, IconsCatalogDemo } from './pages/IconDemos';
+import { GanttDemo } from './pages/GanttDemos';
 // Primitives
-import { PortalDemo, PresenceDemo, SelectionPopupDemo, NavigationMenuDemo, CalendarDemo, CodeBlockDemo, FiltersBarDemo, GanttDemo, SortableDemo, DirectionProviderDemo, SlotDemo, BlockControlsDemo, PluginPanelDemo } from './pages/PrimitiveDemos';
+import { PortalDemo, PresenceDemo, SelectionPopupDemo, NavigationMenuDemo, CalendarDemo, CodeBlockDemo, FiltersBarDemo, SortableDemo, DirectionProviderDemo, SlotDemo, BlockControlsDemo, PluginPanelDemo } from './pages/PrimitiveDemos';
 
 const layoutStyle: React.CSSProperties = {
   display: 'flex',
