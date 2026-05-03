@@ -356,12 +356,15 @@ export function GanttDemo() {
 }
 
 export function SortableDemo() {
+  const lists = [
+    { id: 'main', label: 'Release checklist', description: 'Drag tasks into priority order' },
+  ];
   const [items, setItems] = useState([
-    { id: '1', label: 'Design tokens' },
-    { id: '2', label: 'Component library' },
-    { id: '3', label: 'Documentation site' },
-    { id: '4', label: 'Storybook setup' },
-    { id: '5', label: 'Release pipeline' },
+    { id: '1', listId: 'main', label: 'Design tokens', description: 'Color, radius, spacing, and typography foundations', order: 1 },
+    { id: '2', listId: 'main', label: 'Component library', description: 'React wrappers and web component demos', order: 2 },
+    { id: '3', listId: 'main', label: 'Documentation site', description: 'Usage examples, API notes, and live links', order: 3 },
+    { id: '4', listId: 'main', label: 'Storybook setup', description: 'Full page examples and edge-case states', order: 4 },
+    { id: '5', listId: 'main', label: 'Release pipeline', description: 'Build, publish, sandbox, and docs checks', order: 5 },
   ]);
   return (
     <div>
@@ -369,13 +372,17 @@ export function SortableDemo() {
       <div style={panel}>
         <h3 style={h3}>Drag to reorder</h3>
         <Sortable
-          lists={[{ id: 'main', items }]}
+          lists={lists}
+          items={items}
+          itemRadius="md"
+          listGap="md"
           onChange={(d: any) => {
-            if (d.lists?.[0]) setItems(d.lists[0].items);
+            setItems(d.items);
           }}
-          renderItem={(ctx: any) => (
-            <Box style={{ padding: '10px 14px', background: '#f8fafc', borderRadius: 8, border: '1px solid #e2e8f0', fontSize: 14, cursor: 'grab', userSelect: 'none' }}>
-              ⠿ {ctx.item.label}
+          renderItem={(item: any, ctx: any) => (
+            <Box style={{ padding: '10px 14px', background: ctx.selected ? '#eff6ff' : '#f8fafc', borderRadius: 12, border: `1px solid ${ctx.selected ? '#93c5fd' : '#e2e8f0'}`, fontSize: 14, cursor: ctx.dragDisabled ? 'default' : 'grab', userSelect: 'none' }}>
+              <div style={{ fontWeight: 700, color: '#0f172a' }}>☰ {item.label}</div>
+              <div style={{ marginTop: 4, color: '#64748b', fontSize: 12 }}>{item.description}</div>
             </Box>
           )}
         />
