@@ -176,8 +176,40 @@ export function GanttDemo() {
   };
 
   return (
-    <div>
+    <div style={{ maxWidth: 1440, margin: '0 auto', display: 'grid', gap: 16 }}>
       <h2 style={h2}>Gantt</h2>
+
+      <div style={panel}>
+        <h3 style={h3}>Focused examples</h3>
+        <Grid style={{ gap: 16, gridTemplateColumns: 'repeat(auto-fit, minmax(520px, 1fr))' }}>
+          <Box>
+            <div style={{ color: '#64748b', fontSize: 12, fontWeight: 700, marginBottom: 6 }}>Calendar view - day scale</div>
+            <Gantt tasks={portfolioTasks.slice(0, 6)} links={portfolioLinks.slice(0, 3)} zoom="day" showToday sort="start" barVariant="soft" />
+          </Box>
+          <Box>
+            <div style={{ color: '#64748b', fontSize: 12, fontWeight: 700, marginBottom: 6 }}>Links and connectors</div>
+            <Gantt
+              tasks={connectorTasks}
+              links={[
+                { id: 'focused-e2s', source: 'source', target: 'target', type: 'e2s' },
+                { id: 'focused-s2e', source: 'parallel', target: 'checkpoint', type: 's2e' }
+              ]}
+              zoom="week"
+              barVariant="outline"
+              showToolbar={false}
+              onLinkSelect={(detail) => setLastAction(`Selected ${detail.type} connector ${detail.source} to ${detail.target}`)}
+            />
+          </Box>
+          <Box>
+            <div style={{ color: '#64748b', fontSize: 12, fontWeight: 700, marginBottom: 6 }}>Bar types - summary, task, milestone, split, baseline</div>
+            <Gantt tasks={barTasks} links={[{ id: 'focused-bar-link', source: 'normal', target: 'baseline', type: 'e2s' }]} zoom="week" barVariant="striped" showToolbar={false} />
+          </Box>
+          <Box>
+            <div style={{ color: '#64748b', fontSize: 12, fontWeight: 700, marginBottom: 6 }}>Calendar view - month scale</div>
+            <Gantt tasks={portfolioTasks} links={portfolioLinks} zoom="month" sort="start" barVariant="glass" />
+          </Box>
+        </Grid>
+      </div>
 
       <div style={{ ...panel, display: 'grid', gap: 14 }}>
         <Flex style={{ alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
