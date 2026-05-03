@@ -19,7 +19,7 @@ import { AccordionDemo, AlertDemo, CollapsibleDemo, EmptyStateDemo, ProgressDemo
 // Navigation
 import { BreadcrumbDemo, TabsDemo, TreeDemo, PaginationDemo, StepperDemo, CommandDemo, WizardDemo, TimelineDemo } from './pages/NavigationDemos';
 // Data Display
-import { AvatarDemo, BadgeDemo, CardDemo, ChartDemo, TableDemo, SkeletonDemo, ScrollAreaDemo } from './pages/DataDisplayDemos';
+import { AvatarDemo, BadgeDemo, CardDemo, ChartDemo, DataTableDemo, TableDemo, SkeletonDemo, ScrollAreaDemo } from './pages/DataDisplayDemos';
 // Buttons
 import { ButtonDemo, ButtonMatricesDemo, CopyButtonDemo, ToggleDemo, ToggleGroupDemo, ToolbarDemo, SplitButtonDemo, QuickActionsDemo } from './pages/ButtonDemos';
 // Typography
@@ -168,7 +168,7 @@ export default function App() {
             <Route path="/chart" element={<ChartDemo />} />
             <Route path="/code-block" element={<CodeBlockDemo />} />
             <Route path="/code-snippet" element={<CodeBlockDemo />} />
-            <Route path="/data-table" element={<TableDemo />} />
+            <Route path="/data-table" element={<DataTableDemo />} />
             <Route path="/data-view-toolbar" element={<ToolbarDemo />} />
             <Route path="/filters-bar" element={<FiltersBarDemo />} />
             <Route path="/gantt" element={<GanttDemo />} />
