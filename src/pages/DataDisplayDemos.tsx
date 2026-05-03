@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Avatar, Badge, Box, Button, Card, Chart, DataTable, Flex, Grid,
-  Pagination, ScrollArea, Separator, Skeleton, Table,
+  Avatar, Badge, Box, Button, Card, Carousel, Chart, CodeSnippet, DataTable,
+  DataViewToolbar, Flex, Grid, MetricCard, PageHeader, PageToolbar,
+  Pagination, RecordHeader, ScrollArea, Separator, Skeleton, Stat, Table,
 } from '@editora/ui-react';
 import { CheckCircleIcon, ClockIcon } from '@editora/react-icons';
 
@@ -115,6 +116,225 @@ export function CardDemo() {
               <Button size="sm">View report</Button>
             </Card.Footer>
           </Card>
+        </Grid>
+      </div>
+    </div>
+  );
+}
+
+export function CarouselDemo() {
+  const slides = [
+    ['Editor workspace', 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80'],
+    ['Design systems', 'https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=900&q=80'],
+    ['Release planning', 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80'],
+  ];
+
+  return (
+    <div>
+      <h2 style={h2}>Carousel</h2>
+      <div style={panel}>
+        <h3 style={h3}>Horizontal carousel</h3>
+        <Carousel controlsVariant="button" controlsPosition="center" indicatorsVariant="pill" loop style={{ maxWidth: 760 }}>
+          {slides.map(([title, src]) => (
+            <Carousel.Item key={title}>
+              <div style={{ position: 'relative', height: 320, borderRadius: 14, overflow: 'hidden' }}>
+                <img src={src} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', left: 18, bottom: 18, color: '#fff', fontWeight: 800, fontSize: 24, textShadow: '0 2px 8px rgba(15,23,42,.55)' }}>{title}</div>
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
+      <div style={panel}>
+        <h3 style={h3}>Fade transition</h3>
+        <Carousel transition="fade" controlsPosition="bottom" controlsAlign="center" indicatorsVariant="line" autoPlay interval={3200}>
+          {['Plan', 'Write', 'Review'].map((title, index) => (
+            <Carousel.Item key={title}>
+              <Box style={{ minHeight: 160, display: 'grid', placeItems: 'center', borderRadius: 14, background: ['#eff6ff', '#f0fdf4', '#fff7ed'][index], border: '1px solid #dbe4ef', fontSize: 24, fontWeight: 800 }}>{title}</Box>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
+    </div>
+  );
+}
+
+export function CodeSnippetDemo() {
+  return (
+    <div>
+      <h2 style={h2}>CodeSnippet</h2>
+      <div style={panel}>
+        <h3 style={h3}>Inline snippets</h3>
+        <Flex style={{ gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+          <CodeSnippet code="npm install @editora/ui-react" tone="brand" />
+          <CodeSnippet code="<Button />" tone="success" />
+          <CodeSnippet code="aria-label" tone="warning" size="sm" />
+          <CodeSnippet code="dangerouslySetInnerHTML" tone="danger" />
+        </Flex>
+      </div>
+      <div style={panel}>
+        <h3 style={h3}>Block snippet</h3>
+        <CodeSnippet block tone="neutral" code={`import { Button } from '@editora/ui-react';\n\nexport function SaveAction() {\n  return <Button>Save draft</Button>;\n}`} />
+      </div>
+    </div>
+  );
+}
+
+export function DataViewToolbarDemo() {
+  const [query, setQuery] = React.useState('');
+  const [status, setStatus] = React.useState('active');
+  return (
+    <div>
+      <h2 style={h2}>DataViewToolbar</h2>
+      <div style={panel}>
+        <DataViewToolbar
+          title="Project portfolio"
+          description="Search, filter, and act on a data collection."
+          selectedCount={2}
+          totalCount={42}
+          itemLabel="project"
+          search={query}
+          searchPlaceholder="Search projects..."
+          searchClearable
+          status={status}
+          statusOptions={[
+            { value: 'active', label: 'Active' },
+            { value: 'review', label: 'In review' },
+            { value: 'blocked', label: 'Blocked' },
+          ]}
+          actions={<Button size="sm">New project</Button>}
+          footer={<div style={{ fontSize: 12, color: '#64748b' }}>Query: {query || 'empty'} · Status: {status}</div>}
+          onSearchChange={setQuery}
+          onStatusChange={setStatus}
+          onClear={() => { setQuery(''); setStatus('active'); }}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function StatDemo() {
+  return (
+    <div>
+      <h2 style={h2}>Stat</h2>
+      <div style={panel}>
+        <h3 style={h3}>Plain and card stats</h3>
+        <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))' }}>
+          <Stat label="Deploys" value="128" trend="+12%" meta="This week" tone="success" icon={<CheckCircleIcon size={16} />} />
+          <Stat label="Review time" value="2.4h" trend="-18%" meta="Median" tone="brand" icon={<ClockIcon size={16} />} />
+          <Stat label="Incidents" value="3" description="Open production incidents" tone="danger" size="lg" />
+        </Grid>
+      </div>
+      <div style={panel}>
+        <h3 style={h3}>Card variant</h3>
+        <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+          {(['brand', 'success', 'warning', 'danger'] as const).map((tone, index) => (
+            <Stat key={tone} variant="card" tone={tone} label={`${tone} metric`} value={['$48.2k', '99.9%', '14', '2'][index]} meta="Updated today" />
+          ))}
+        </Grid>
+      </div>
+    </div>
+  );
+}
+
+export function MetricCardDemo() {
+  return (
+    <div>
+      <h2 style={h2}>MetricCard</h2>
+      <div style={panel}>
+        <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))' }}>
+          <MetricCard label="Monthly revenue" value="$84,210" trend="+8.2%" meta="vs last month" tone="success" icon={<CheckCircleIcon size={16} />} />
+          <MetricCard label="Queue time" value="41m" trend="-12m" meta="SLA improving" tone="brand" icon={<ClockIcon size={16} />} />
+          <MetricCard label="Failed jobs" value="7" trend="+3" meta="Needs review" tone="danger" />
+        </Grid>
+      </div>
+    </div>
+  );
+}
+
+export function PageHeaderDemo() {
+  return (
+    <div>
+      <h2 style={h2}>PageHeader</h2>
+      <div style={panel}>
+        <PageHeader
+          eyebrow="Workspace"
+          title="Editor dashboard"
+          subtitle="Monitor content operations, plugin usage, and release readiness."
+          statusChip={{ label: 'Healthy', tone: 'success' }}
+          actions={[
+            { label: 'Export', variant: 'secondary' },
+            { label: 'Create report', variant: 'primary' },
+          ]}
+        >
+          <Grid style={{ gap: 10, gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))' }}>
+            <Badge variant="soft" tone="brand">42 projects</Badge>
+            <Badge variant="soft" tone="success">99.9% uptime</Badge>
+            <Badge variant="soft" tone="warning">3 reviews</Badge>
+          </Grid>
+        </PageHeader>
+      </div>
+    </div>
+  );
+}
+
+export function PageToolbarDemo() {
+  const [query, setQuery] = React.useState('');
+  return (
+    <div>
+      <h2 style={h2}>PageToolbar</h2>
+      <div style={panel}>
+        <PageToolbar
+          title="Release notes"
+          subtitle="Search and filter release documents."
+          statusChip={{ label: 'Draft', tone: 'warning' }}
+          actions={<Button size="sm">Publish</Button>}
+          toolbar={<DataViewToolbar search={query} searchPlaceholder="Search notes..." searchClearable onSearchChange={setQuery} totalCount={18} itemLabel="note" style={{ background: 'transparent', border: 0, padding: 0 }} />}
+          footer={<div style={{ fontSize: 12, color: '#64748b' }}>Active search: {query || 'none'}</div>}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function RecordHeaderDemo() {
+  return (
+    <div>
+      <h2 style={h2}>RecordHeader</h2>
+      <div style={panel}>
+        <RecordHeader
+          eyebrow="Customer"
+          title="Acme Healthcare"
+          subtitle="Enterprise plan with active editor rollout."
+          statusChip={{ label: 'Renewing', tone: 'brand' }}
+          actions={[{ label: 'Edit', variant: 'secondary' }, { label: 'Open account', variant: 'primary' }]}
+          details={[
+            { label: 'Owner', value: 'Maya Patel' },
+            { label: 'ARR', value: '$128k' },
+            { label: 'Renewal', value: 'May 18, 2026' },
+            { label: 'Health', value: 'Good' },
+          ]}
+          footer={<div style={{ fontSize: 12, color: '#64748b' }}>Last activity: contract redlines approved.</div>}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function ReportingDemo() {
+  return (
+    <div>
+      <h2 style={h2}>Reporting Dashboard</h2>
+      <div style={panel}>
+        <PageHeader title="Executive report" subtitle="A composed dashboard using Editora data display components." actions={<Button size="sm">Download PDF</Button>} />
+        <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', marginTop: 16 }}>
+          <MetricCard label="Revenue" value="$84.2k" trend="+8.2%" tone="success" />
+          <MetricCard label="Activation" value="71%" trend="+4.1%" tone="brand" />
+          <MetricCard label="Risk" value="Medium" trend="3 blockers" tone="warning" />
+        </Grid>
+        <Grid style={{ gap: 14, gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', marginTop: 16 }}>
+          <Chart type="area" title="Adoption" data={[{ label: 'Jan', value: 24 }, { label: 'Feb', value: 38 }, { label: 'Mar', value: 55 }, { label: 'Apr', value: 71 }]} />
+          <Chart type="donut" title="Work mix" data={[{ label: 'Editor', value: 48 }, { label: 'Plugins', value: 27 }, { label: 'Docs', value: 25 }]} />
         </Grid>
       </div>
     </div>
